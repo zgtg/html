@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>测试</title>
+
+        <script type="text/javascript">
+            /**
+            1. 可以获取html元素对象
+            2. 操作这些元素对象
+            */
+            initBodyColor();
+            function initBodyColor() {
+                var bodyEle = document.getElementsByTagName('input')[0];  
+                bodyEle.style="background-color:green";
+            }
+
+            /**
+            * 校验表单内容是否有效
+            */
+            function submitForm(event) {
+                var firstNameEle = document.getElementById("firstname");
+                var firstName = firstNameEle.value;
+
+                // 校验用户名
+                if (firstName == null || firstName.length <= 0) {
+                    alert('用户名不能为空');
+                    
+                    return false;
+                }
+
+                // 校验密码
+                var pwdEle = document.getElementById("pwd");
+                var pwd = pwdEle.value;
+
+                if (pwd == null || pwd.length <= 0) {
+                    alert('密码不能为空');
+                    return false;
+                }
+
+                if (pwd.length < 6) {
+                    alert('密码不能小于6位');
+                    return false;
+                }
+
+                // 性别
+                // var sexEle1 = document.getElementById('sex1');
+                // var sexEle2 = document.getElementById('sex2');
+
+                // 性别数组
+                var sexArr = document.getElementsByName("sex");
+                
+                var sexFlag = false;
+                for(var i=0; i<sexArr.length; i++) {
+                    var sexEle = sexArr[i];
+                    // 单选框是否选中
+                    var sex = sexEle.checked;
+                    if (sex) {
+                        sexFlag = true;
+                    }
+                }
+                
+                if (!sexFlag) {
+                    alert('请勾选性别');
+                    return false;
+                }
+
+                // 我喜爱的运动数组
+                var sportArr = document.getElementsByName("sport"); // 1,2
+
+                var sports = [];
+                
+                for(var i=0; i<sportArr.length; i++) {
+                    var sportEle = sportArr[i];
+            
+                    if (sportEle.checked) {
+                        sports.push(sportEle.value);
+                    }
+                }
+
+                if (sports.length <= 0) {
+                    alert('请勾选我喜爱的运动');
+                    return false;
+                }
+
+                alert(sports.join(','));
+
+                document.getElementsByTagName("body");
+
+                return;
+            }
+
+            /**
+            表单显示
+            */
+            function show() {
+                var formEle = document.getElementsByTagName('form')[0];
+                formEle.style = "display:block;";
+            }
+
+            /**
+            表单隐藏个
+            */
+            function hide() {
+                var formEle = document.getElementsByTagName('form')[0];
+                formEle.style = "display:none";
+            }
+
+        </script>
+    </head>
+    
+    <body>
+            <button id="show" onclick="show();">表单显示</button>
+            <button id="hide" onclick="hide();">表单隐藏</button>
+
+            <form action="test01.html" method="POST" style="display:none;">
+                名字: <input type="text" name="firstname" id="firstname" value="zhangsan"><br/>
+                Password: <input type="password" name="pwd" id="pwd" value="123456"><br/>
+                <input type="radio" name="sex"  value="1" id="sex1" checked="true" value="1">Male<br/>
+                <input type="radio" name="sex" value="2" id="sex2" value="2">Female<br/>
+
+                我喜爱的运动
+                <input type="checkbox" name="sport" value="1">篮球 
+                <input type="checkbox" name="sport" value="2">足球<br/>
+
+                <input type="submit" value="Submit" onclick="return submitForm();">
+            </form>
+    </body>
+
+    <script>
+        
+    </script>
+</html>

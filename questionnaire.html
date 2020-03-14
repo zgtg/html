@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>问卷调查</title>
+
+
+    <script>
+        /**
+        * 显示
+        */
+        function show() {
+            document.getElementsByTagName('div')[1].style.display="block";
+        }
+
+        /**
+        * 隐藏
+        */
+        function hide() {
+            document.getElementsByTagName('div')[1].style.display="none";
+        }
+
+        /**
+        * 提交
+        */
+        function submit() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+
+            // 去除空格
+            name = name != null ? name.trim() : null;
+            email = email != null ? email.trim() : null;
+
+            if(name == null || name.length <= 0) {
+                alert('姓名不能为空');
+                return;
+            }
+
+            if (email == null || email.length <= 0) {
+                alert('邮箱不能为空');
+                return;
+            }
+            // 123@qq.com
+            // xxxx@xx.xx
+            var emailReg = /\w+@\w+\.\w+/;
+            if(!emailReg.test(email)) {
+                alert('请输入正确的邮箱地址');
+                return;
+            }
+
+            alert(name + ',' + email);
+        }
+    </script>
+</head>
+<body>
+    <!--div是个块元素-->
+    <div>
+        你要参加问卷调查吗
+        <input type="radio" name="questionnaire" onclick="show();" checked="true"> 是
+        <input type="radio" name="questionnaire" onclick="hide();"> 否
+    </div>
+
+    <div style="display:block;">
+        问卷调查内容: <br/>
+        您的姓名: <input type="text" id="name"><br/>
+        您的邮箱: <input type="text" id="email"><br/>
+        
+        <button onclick="submit();">提交</button>
+    </div>
+</body>
+</html>

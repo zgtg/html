@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>邮件</title>
+
+    <style>
+        table,td, th {
+            border: 1px grey solid;
+        }
+    </style>
+
+    <script>
+        /**
+        * 全选
+        */
+        function checkAll() {
+            var checkboxArr = document.getElementsByName('email-checkbox');
+
+            for(var i=0; i<checkboxArr.length; i++) {
+                checkboxArr[i].checked=true;
+            }
+        }
+
+        /**
+        * 取消全选
+        */
+        function uncheckAll() {
+            var checkboxArr = document.getElementsByName('email-checkbox');
+
+            for(var i=0; i<checkboxArr.length; i++) {
+                checkboxArr[i].checked=false;
+            }
+        }
+
+        /**
+        * 反选
+        */
+        function reverseCheck() {
+            var checkboxArr = document.getElementsByName('email-checkbox');
+
+            for(var i=0; i<checkboxArr.length; i++) {
+                checkboxArr[i].checked = !checkboxArr[i].checked;
+            }
+        }
+
+        /**
+        * 删除选中邮件
+        */
+        function deleteCheckedEmail() {
+            var checkboxArr = document.getElementsByName('email-checkbox');
+
+            for(var i=checkboxArr.length-1; i>=0; i--) {
+                if(checkboxArr[i].checked) {
+                    var trEle = checkboxArr[i].parentNode.parentNode;
+                    trEle.remove();
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox">全选</th>
+                <th>发件人</th>
+                <th>邮件名称</th>
+                <th>邮件附属信息</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="email-checkbox"></td>
+                <td>张三1</td>
+                <td>邮件标题1</td>
+                <td>邮件内容1</td>
+            </tr>
+            
+            <tr>
+                <td><input type="checkbox" name="email-checkbox"></td>
+                <td>张三2</td>
+                <td>邮件标题2</td>
+                <td>邮件内容2</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="email-checkbox"></td>
+                <td>张三3</td>
+                <td>邮件标题3</td>
+                <td>邮件内容3</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="email-checkbox"></td>
+                <td>张三4</td>
+                <td>邮件标题4</td>
+                <td>邮件内容4</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="email-checkbox"></td>
+                <td>张三5</td>
+                <td>邮件标题5</td>
+                <td>邮件内容5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="checkAll();">全选</button><br/>
+    <button onclick="uncheckAll();">取消全选</button><br/>
+    <button onclick="reverseCheck();">反选</button><br/>
+    <button onclick="deleteCheckedEmail();">删除选中邮件</button><br/>
+</body>
+</html>
